@@ -12,23 +12,29 @@ public class Card {
     private static final String SYMBOL_SEPARATOR = "-";
     private static final String DISPLAY_SEPARATOR = " ";
 
-    public Card(Ranks rank, Suits suit, boolean faceUp){
+    public Card(Ranks rank, Suits suit){
         this.rank = rank;
         this.suit = suit;
         this.faceUp = false;
     }
 
-    public boolean isFaceUp(){return faceUp;}
+    public boolean isFaceUp(){
+        return faceUp;
+    }
 
-    public void turnFaceUp(){faceUp = true;}
+    public void turnFaceUp(){
+        faceUp = true;
+    }
 
-    public void turnFaceDown(){faceUp = false;}
+    public void turnFaceDown(){
+        faceUp = false;
+    }
 
     public boolean isRed(){
         return suit.getColor() == SuitColor.RED;
     }
 
-    public boolean isOppositeColor(Card other){
+    public boolean isOppositeColorTo(Card other){
         return suit.getColor() != other.suit.getColor();
     }
 

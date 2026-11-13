@@ -18,6 +18,10 @@ public class Card {
         this.faceUp = false;
     }
 
+    public Ranks getRank(){
+        return rank;
+    }
+
     public boolean isFaceUp(){
         return faceUp;
     }

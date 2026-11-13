@@ -22,6 +22,11 @@ public class Card {
         return rank;
     }
 
+    public Suits getSuit(){
+        return suit;
+    }
+
+
     public boolean isFaceUp(){
         return faceUp;
     }

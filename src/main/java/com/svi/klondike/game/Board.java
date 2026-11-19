@@ -1,11 +1,9 @@
 package com.svi.klondike.game;
 
 import com.svi.klondike.enums.Suits;
+import com.svi.klondike.models.Card;
 import com.svi.klondike.models.Deck;
-import com.svi.klondike.piles.FoundationPile;
-import com.svi.klondike.piles.StockPile;
-import com.svi.klondike.piles.TableauPile;
-import com.svi.klondike.piles.Talon;
+import com.svi.klondike.piles.*;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -13,13 +11,12 @@ import java.util.List;
 
 public class Board {
     private static final int TABLEAU_COUNT = 7;
+    private static final int DRAW_COUNT = 1;
 
     private final List<TableauPile> tableau = new ArrayList<>();
     private final List<FoundationPile> foundations = new ArrayList<>();
     private final StockPile stock = new StockPile();
     private final Talon talon = new Talon();
-
-    private static final int DRAW_COUNT = 1;
 
     public Board() {
         for (int index = 0; index < TABLEAU_COUNT; index++) {
@@ -48,6 +45,41 @@ public class Board {
         }
     }
 
+    public DrawResult drawFromStock() {
+        if (stock.isEmpty()) {
+            if (talon.isEmpty()) {
+                return DrawResult.NOTHING_TO_DRAW;
+            }
+
+            stock.recycle(talon);
+            return DrawResult.RECYCLED;
+        }
+
+        stock.draw(talon, DRAW_COUNT);
+        return DrawResult.DRAWN;
+    }
+
+    public MoveResult move(Pile source,Pile destination, int count){
+        if(source == destination){
+            return MoveResult.SAME_PILE;
+        }
+
+        if(!source.canGive(count)){
+            return MoveResult.CANNOT_TAKE;
+        }
+
+        Card firstCard = source.peekFromTop(count);
+
+        if(!destination.canAcceptRun(firstCard, count)){
+            return MoveResult.CANNOT_PLACE;
+        }
+
+        destination.addCards(source.removeTop(count));
+        source.onCardsRemoved();
+
+        return MoveResult.MOVED;
+    }
+
     public List<TableauPile> getTableau() {
         return Collections.unmodifiableList(tableau);
     }
@@ -62,19 +94,5 @@ public class Board {
 
     public Talon getTalon() {
         return talon;
-    }
-
-    public DrawResult drawFromStock() {
-        if (stock.isEmpty()) {
-            if (talon.isEmpty()) {
-                return DrawResult.NOTHING_TO_DRAW;
-            }
-
-            stock.recycle(talon);
-            return DrawResult.RECYCLED;
-        }
-
-        stock.draw(talon, DRAW_COUNT);
-        return DrawResult.DRAWN;
     }
 }

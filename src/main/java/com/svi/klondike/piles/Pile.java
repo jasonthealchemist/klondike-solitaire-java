@@ -36,6 +36,10 @@ public abstract class Pile {
         return cards.get(cards.size() - count);
     }
 
+    public void addCard(Card card){
+        cards.add(card);
+    }
+
     public void addCards(List<Card> newCards){
         cards.addAll(newCards);
     }

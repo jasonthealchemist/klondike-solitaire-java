@@ -26,7 +26,6 @@ public class Card {
         return suit;
     }
 
-
     public boolean isFaceUp(){
         return faceUp;
     }

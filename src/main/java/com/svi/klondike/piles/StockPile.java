@@ -28,4 +28,9 @@ public class StockPile extends Pile{
             addCard(card);
         }
     }
+
+    @Override
+    public boolean canGive(int count){
+        return false;
+    }
 }

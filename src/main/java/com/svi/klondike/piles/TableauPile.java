@@ -25,4 +25,14 @@ public class TableauPile extends Pile{
             peekTop().turnFaceUp();
         }
     }
+
+    @Override
+    public boolean canAcceptRun(Card firstCard, int count){
+        return canAccept(firstCard);
+    }
+
+    @Override
+    public void onCardsRemoved(){
+        flipTopIfNeeded();
+    }
 }

@@ -13,6 +13,14 @@ public abstract class Pile {
 
     public abstract boolean canAccept(Card card);
 
+    public boolean canAcceptRun(Card firstCard, int count){
+        return count == SINGLE_CARD && canAccept(firstCard);
+    }
+
+    public void onCardsRemoved(){
+
+    }
+
     public boolean canGive(int count){
         return count == SINGLE_CARD && !isEmpty();
     }

@@ -1,5 +1,6 @@
 package com.svi.klondike.game;
 
+import java.util.NoSuchElementException;
 import java.util.Scanner;
 
 public class GameSetup {
@@ -9,23 +10,30 @@ public class GameSetup {
         this.scanner = scanner;
     }
 
-    public boolean pressEnterToPlay(){
-        while(true){
+    public void start(){
+        boolean gameStarted = false;
+
+        while (!gameStarted){
             System.out.print("Press Enter to Start | Q to Quit: ");
-            String input = scanner.nextLine().trim();
 
-            if(input.isEmpty()){
-                System.out.println("Game Starting....");
-                return true;
-            }
+            try {
+                String input = scanner.nextLine().trim();
 
-            if(input.equalsIgnoreCase("Q") ||  input.equalsIgnoreCase("QUIT")){
-                if(confirmQuit()){
-                    System.out.println("Exiting War Card Game.....");
-                    return false;
+                if(input.isEmpty()){
+                    System.out.println("\nStarting Klondike Solitaire...");
+                    gameStarted = true;
                 }
-            }else {
-                System.out.println("Invalid, Please press Enter.");
+                else if(input.equalsIgnoreCase("Q") || input.equalsIgnoreCase("QUIT")){
+                    if (confirmQuit()) {
+                        System.out.println("Exiting Klondike Solitaire...");
+                        return;
+                    }
+                }else{
+                    System.out.println("Invalid input. Please press Enter or Q to quit.");
+                }
+            }catch (NoSuchElementException e){
+                System.out.println("\nInput closed. Exiting War Card Game.....");
+                return;
             }
         }
     }
@@ -45,15 +53,5 @@ public class GameSetup {
 
             System.out.println("Invalid, Please enter Y or N.");
         }
-    }
-
-    public void start(){
-        if(!pressEnterToPlay()){
-            return;
-        }
-        while(true){
-            // boolean gameStarted
-        }
-    }
-
+  }
 }

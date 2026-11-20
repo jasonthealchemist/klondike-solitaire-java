@@ -48,7 +48,12 @@ public class GameSetup {
     }
 
     public void start(){
-
+        if(!pressEnterToPlay()){
+            return;
+        }
+        while(true){
+            // boolean gameStarted
+        }
     }
 
 }

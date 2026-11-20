@@ -17,8 +17,16 @@ public class Main {
        static void main(String[] args) {
               Scanner scanner = new Scanner(System.in);
 
+              displayTitle();
+
               GameSetup gameSetup = new GameSetup(scanner);
               gameSetup.start();
 
+              scanner.close();
+       }
+
+       private static void displayTitle(){
+              System.out.println("========== KLONDIKE SOLITAIRE ==========");
+              System.out.println();
        }
 }

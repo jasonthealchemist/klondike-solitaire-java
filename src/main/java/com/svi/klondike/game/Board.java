@@ -11,14 +11,22 @@ import java.util.List;
 
 public class Board {
     private static final int TABLEAU_COUNT = 7;
-    private static final int DRAW_COUNT = 1;
+    private static final int MIN_DRAW_COUNT = 1;
+    private static final int SINGLE_CARD = 1;
+    private final int drawCount;
 
     private final List<TableauPile> tableau = new ArrayList<>();
     private final List<FoundationPile> foundations = new ArrayList<>();
     private final StockPile stock = new StockPile();
     private final Talon talon = new Talon();
 
-    public Board() {
+    public Board(int drawCount) {
+        if (drawCount < MIN_DRAW_COUNT) {
+            throw new IllegalArgumentException("Draw count must be at least" + MIN_DRAW_COUNT);
+        }
+
+        this.drawCount = drawCount;
+
         for (int index = 0; index < TABLEAU_COUNT; index++) {
             tableau.add(new TableauPile());
         }
@@ -55,22 +63,22 @@ public class Board {
             return DrawResult.RECYCLED;
         }
 
-        stock.draw(talon, DRAW_COUNT);
+        stock.draw(talon, drawCount);
         return DrawResult.DRAWN;
     }
 
-    public MoveResult move(Pile source,Pile destination, int count){
-        if(source == destination){
+    public MoveResult move(Pile source, Pile destination, int count) {
+        if (source == destination) {
             return MoveResult.SAME_PILE;
         }
 
-        if(!source.canGive(count)){
+        if (!source.canGive(count)) {
             return MoveResult.CANNOT_TAKE;
         }
 
         Card firstCard = source.peekFromTop(count);
 
-        if(!destination.canAcceptRun(firstCard, count)){
+        if (!destination.canAcceptRun(firstCard, count)) {
             return MoveResult.CANNOT_PLACE;
         }
 
@@ -78,6 +86,37 @@ public class Board {
         source.onCardsRemoved();
 
         return MoveResult.MOVED;
+    }
+
+    public FoundationPile findFoundationFor(Card card) {
+        for (FoundationPile foundation : foundations) {
+            if (foundation.canAccept(card)) {
+                return foundation;
+            }
+        }
+        return null;
+    }
+
+    public MoveResult moveToFoundation(Pile source) {
+        if (!source.canGive(SINGLE_CARD)) {
+            return MoveResult.CANNOT_TAKE;
+        }
+        FoundationPile target = findFoundationFor(source.peekTop());
+
+        if (target == null) {
+            return MoveResult.CANNOT_PLACE;
+        }
+
+        return move(source, target, SINGLE_CARD);
+    }
+
+    public boolean isWon() {
+        for (FoundationPile foundation : foundations) {
+            if (!foundation.isComplete()) {
+                return false;
+            }
+        }
+        return true;
     }
 
     public List<TableauPile> getTableau() {
@@ -94,5 +133,9 @@ public class Board {
 
     public Talon getTalon() {
         return talon;
+    }
+
+    public int getDrawCount(){
+        return drawCount;
     }
 }

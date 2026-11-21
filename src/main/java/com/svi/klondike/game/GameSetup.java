@@ -32,7 +32,7 @@ public class GameSetup {
                     System.out.println("Invalid input. Please press Enter or Q to quit.");
                 }
             }catch (NoSuchElementException e){
-                System.out.println("\nInput closed. Exiting War Card Game.....");
+                System.out.println("\nInput closed. Exiting Klondike Solitaire Game.....");
                 return;
             }
         }

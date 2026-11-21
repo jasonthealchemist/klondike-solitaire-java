@@ -32,7 +32,7 @@ public enum Ranks {
         return this.value;
     }
 
-    public static Ranks getSymbol(String text) {
+    public static Ranks fromSymbol(String text) {
         if (text == null) {
             throw new IllegalArgumentException("Error: Ranks cannot be null.");
         }

@@ -1,7 +1,6 @@
 package com.svi.klondike.shuffle;
 
 import com.svi.klondike.models.Card;
-import com.svi.klondike.models.Shuffler;
 
 import java.util.Collections;
 import java.util.List;

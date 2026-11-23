@@ -1,7 +1,6 @@
 package com.svi.klondike.shuffle;
 
 import com.svi.klondike.config.ShuffleType;
-import com.svi.klondike.models.Shuffler;
 
 import java.util.Random;
 

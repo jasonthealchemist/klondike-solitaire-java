@@ -88,5 +88,42 @@ public class BoardPrinter {
         for (TableauPile pile : tableau){
             tallest = Math.max(tallest, pile.size());
         }
+
+        for (int row = 0; row < tallest; row++) {
+            StringBuilder line = new StringBuilder();
+
+            for (TableauPile pile : tableau) {
+                if (row < pile.size()) {
+                    int fromTop = pile.size() - 1 - row;
+                    line.append(cell(pile.getCards().get(row), isHighlighted(lastAction, pile, fromTop)));
+                } else {
+                    line.append(SPACE.repeat(CELL_WIDTH));
+                }
+            }
+
+            System.out.println(line);
+        }
+    }
+
+    private boolean isHighlighted(GameAction lastAction, Pile pile, int fromTop) {
+        return lastAction != null
+                && lastAction.getDestination() == pile
+                && fromTop < lastAction.getHighlightCount();
+    }
+
+    private String show(Card card, boolean highlighted) {
+        String text = card.toString();
+
+        return text;
+    }
+
+    private String cell(Card card, boolean highlighted) {
+        int padding = Math.max(0, CELL_WIDTH - card.toString().length());
+
+        return show(card, highlighted) + SPACE.repeat(padding);
+    }
+
+    private String pad(String text) {
+        return text + SPACE.repeat(Math.max(0, CELL_WIDTH - text.length()));
     }
 }

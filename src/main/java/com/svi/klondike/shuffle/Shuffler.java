@@ -1,4 +1,6 @@
-package com.svi.klondike.models;
+package com.svi.klondike.shuffle;
+
+import com.svi.klondike.models.Card;
 
 import java.util.List;
 

@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Scanner;
 import java.util.function.Function;
 
+/**This class handles all keyboard input, every answer is trimmed and checked in a loop until it is valid. */
 public class ConsoleInput {
     private static final int FIRST_OPTION = 1;
     private static final String CHOICE_PROMPT = "> ";
@@ -72,6 +73,7 @@ public class ConsoleInput {
         }
     }
 
+    /** Shows a numbered list and returns the option the user picked. */
     public <T> T chooseOne(String title, List<T> options, Function<T, String> labelOf){
         System.out.println("\n" + title);
 

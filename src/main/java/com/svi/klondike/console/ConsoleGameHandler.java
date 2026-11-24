@@ -1,8 +1,8 @@
 package com.svi.klondike.console;
 
 import com.svi.klondike.game.Board;
-import com.svi.klondike.service.GameAction;
-import com.svi.klondike.service.GameResult;
+import com.svi.klondike.engine.GameAction;
+import com.svi.klondike.engine.GameResult;
 import com.svi.klondike.service.SimulationResult;
 
 import java.io.PrintStream;

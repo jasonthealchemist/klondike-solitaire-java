@@ -1,5 +1,6 @@
 package com.svi.klondike.console;
 
+import com.svi.klondike.engine.GameAction;
 import com.svi.klondike.game.Board;
 import com.svi.klondike.models.Card;
 import com.svi.klondike.piles.FoundationPile;

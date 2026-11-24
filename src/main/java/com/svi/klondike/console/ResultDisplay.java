@@ -1,7 +1,7 @@
 package com.svi.klondike.console;
 
 import com.svi.klondike.config.GameConfig;
-import com.svi.klondike.service.GameResult;
+import com.svi.klondike.engine.GameResult;
 import com.svi.klondike.service.SimulationResult;
 
 import java.io.PrintStream;
@@ -40,11 +40,5 @@ public class ResultDisplay {
         out.println("Wins:           " + result.wins());
         out.println("Losses:         " + result.losses());
         out.println(String.format(Locale.ROOT, "Win rate:       %.1f%%", result.winRatePercent()));
-        out.println("Distinct deals: " + result.distinctDeals());
-
-        if (result.distinctDeals() < result.games()) {
-            out.println("Some deals repeated, so the win rate covers only "
-                    + result.distinctDeals() + " different games.");
-        }
     }
 }

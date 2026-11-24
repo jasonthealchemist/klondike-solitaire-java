@@ -227,6 +227,6 @@ public class GameEngine {
 
         int foundation = board.getFoundations().indexOf(pile);
 
-        return board.getFoundations().get(foundation).getSuit().getDisplaySymbol() + " foundation";
+        return board.getFoundations().get(foundation).getSuit() + " foundation";
     }
 }

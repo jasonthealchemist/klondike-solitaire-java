@@ -2,8 +2,10 @@ package com.svi.klondike.console;
 
 import com.svi.klondike.config.DrawMode;
 import com.svi.klondike.config.GameConfig;
+import com.svi.klondike.config.Settings;
 import com.svi.klondike.config.ShuffleType;
 
+import java.io.PrintStream;
 import java.util.Arrays;
 
 public class ConfigPrompter {
@@ -15,10 +17,15 @@ public class ConfigPrompter {
     private static final int DEFAULT_SHUFFLE_COUNT = 1;
 
     private final ConsoleInput input;
+    private final PrintStream out;
+    private final Settings settings;
 
-    public ConfigPrompter(ConsoleInput input){
+    public ConfigPrompter(ConsoleInput input, PrintStream out, Settings settings) {
         this.input = input;
+        this.out = out;
+        this.settings = settings;
     }
+
 
     /**Asks for shuffle, the draw mode and the number of games. */
     public GameConfig ask() {

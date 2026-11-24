@@ -76,7 +76,7 @@ public class BoardDisplay {
             Card top = foundation.peekTop();
             String topText = (top == null) ? EMPTY_FOUNDATION : show(top, isHighlighted(lastAction, foundation, 0));
 
-            line.append(SPACE).append(SPACE).append(foundation.getSuit().getDisplaySymbol()).append(SPACE).append(topText);
+            line.append(SPACE).append(SPACE).append(foundation.getSuit()).append(SPACE).append(topText);
         }
 
         System.out.println(line);

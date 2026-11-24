@@ -6,7 +6,7 @@ import com.svi.klondike.config.ShuffleType;
 
 import java.util.Arrays;
 
-public class Config {
+public class ConfigPrompter {
     private static final int MIN_SHUFFLES = 1;
     private static final int MAX_SHUFFLES = 100;
     private static final int MIN_GAMES = 1;
@@ -16,10 +16,11 @@ public class Config {
 
     private final ConsoleInput input;
 
-    public Config(ConsoleInput input){
+    public ConfigPrompter(ConsoleInput input){
         this.input = input;
     }
 
+    /**Asks for shuffle, the draw mode and the number of games. */
     public GameConfig ask() {
         ShuffleType shuffleType = input.chooseOne("Choose a shuffle:", Arrays.asList(ShuffleType.values()), ShuffleType::getLabel);
 

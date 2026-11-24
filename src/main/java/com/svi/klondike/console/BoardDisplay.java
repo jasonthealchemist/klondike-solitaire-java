@@ -6,15 +6,23 @@ import com.svi.klondike.piles.FoundationPile;
 import com.svi.klondike.piles.Pile;
 import com.svi.klondike.piles.TableauPile;
 
+import java.io.PrintStream;
 import java.util.List;
 
-public class BoardPrinter {
+public class BoardDisplay {
     private static final int CELL_WIDTH = 8;
     private static final String SPACE = " ";
     private static final String TITLE = "========== KLONDIKE SOLITAIRE ==========";
     private static final String EMPTY_SLOT = "[  ]";
     private static final String STOCK_BACK = "[??]";
     private static final String EMPTY_FOUNDATION = "--";
+
+
+    private final PrintStream out;
+
+    public BoardDisplay(PrintStream out) {
+        this.out = out;
+    }
 
     public void print(Board board, int moveCount){
         System.out.println();

@@ -25,7 +25,7 @@ public class SimulationService {
     public SimulationResult run(GameConfig config, GameHandler handler) {
         int wins = 0;
         Set<List<Card>> deals = new HashSet<>();
-        SimulationResult total = new SimulationResult(0, 0, 0);
+        SimulationResult total = new SimulationResult(0, 0);
 
         for (int game = 1; game <= config.gameCount(); game++) {
             Deck deck = gameService.createShuffledDeck(config.shuffleType(), config.shuffleCountFor(game));
@@ -40,7 +40,7 @@ public class SimulationService {
                 wins++;
             }
 
-            total = new SimulationResult(game, wins, deals.size());
+            total = new SimulationResult(game, wins);
             handler.onGameFinished(game, board, result, total);
         }
 

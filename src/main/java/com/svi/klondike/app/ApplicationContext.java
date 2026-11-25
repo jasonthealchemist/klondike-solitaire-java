@@ -47,12 +47,7 @@ public class ApplicationContext {
         MoveLogDisplay moveLogDisplay = new MoveLogDisplay(out, boardDisplay);
 
         GameRunner gameRunner = new GameRunner(
-                new SimulationService(gameService, gameEngine),
-                out,
-                boardDisplay,
-                moveLogDisplay,
-                new ResultDisplay(out),
-                settings);
+                new SimulationService(gameService, gameEngine), out, boardDisplay, moveLogDisplay, new ResultDisplay(out), settings);
 
         return new GameSetup(input, new ConfigPrompter(input, out, settings), gameRunner, out);
     }

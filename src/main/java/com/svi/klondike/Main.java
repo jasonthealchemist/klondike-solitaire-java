@@ -2,9 +2,7 @@ package com.svi.klondike;
 
 import com.svi.klondike.app.KlondikeApp;
 import com.svi.klondike.config.Settings;
-import com.svi.klondike.console.GameSetup;
 
-import java.util.Scanner;
 
 public class Main {
 

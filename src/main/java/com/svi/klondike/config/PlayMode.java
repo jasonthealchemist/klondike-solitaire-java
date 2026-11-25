@@ -2,7 +2,7 @@ package com.svi.klondike.config;
 
 public enum PlayMode {
     SINGLE_GAME("Play one game"),
-    SEVERAL_GAMES("Play several games");
+    SEVERAL_GAMES("Play multiple games");
 
     private final String label;
 

@@ -16,20 +16,16 @@ public abstract class Pile {
 
     private final List<Card> cards = new ArrayList<>();
 
-    /** The rule of this pile: may this card be placed on it? */
     public abstract boolean canAccept(Card card);
 
-    /** May a run of cards, starting with firstCard, be placed here? By default only a single card may. */
     public boolean canAcceptRun(Card firstCard, int count) {
         return count == SINGLE_CARD && canAccept(firstCard);
     }
 
-    /** May this many cards be taken from the top? By default only one card, and only if the pile is not empty. */
     public boolean canGive(int count) {
         return count == SINGLE_CARD && !isEmpty();
     }
 
-    /** Called after cards were taken from this pile. By default nothing happens. */
     public void onCardsRemoved() {
         // Nothing to do by default.
     }
@@ -64,7 +60,6 @@ public abstract class Pile {
         cards.addAll(newCards);
     }
 
-    /** Removes and returns the top card. */
     public Card removeTop() {
         return cards.remove(cards.size() - 1);
     }

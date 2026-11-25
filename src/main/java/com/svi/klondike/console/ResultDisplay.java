@@ -7,7 +7,9 @@ import com.svi.klondike.service.SimulationResult;
 import java.io.PrintStream;
 import java.util.Locale;
 
-/** Shows how games ended, and the win rate. */
+/**
+ * Shows how games ended, and the win rate.
+ */
 public class ResultDisplay {
     private final PrintStream out;
 
@@ -15,7 +17,9 @@ public class ResultDisplay {
         this.out = out;
     }
 
-    /** Shows how a game ended. When several games are played, it also shows how many have been won so far. */
+    /**
+     * Shows how a game ended. When several games are played, it also shows how many have been won so far.
+     */
     public void printGameResult(GameResult result, SimulationResult runningTotal, int totalGames) {
         if (result.isWon()) {
             out.println("\n========== GAME WON ==========\nCompleted in " + result.actions() + " moves.");
@@ -30,7 +34,9 @@ public class ResultDisplay {
         }
     }
 
-    /** Shows the totals after several games. */
+    /**
+     * Shows the totals after several games.
+     */
     public void printSummary(GameConfig config, SimulationResult result) {
         out.println();
         out.println("========== RESULTS ==========");

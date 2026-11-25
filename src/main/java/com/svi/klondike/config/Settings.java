@@ -26,7 +26,9 @@ public record Settings(int minGames, int maxGames, int minShuffles, int maxShuff
         deckFile = (deckFile == null) ? "" : deckFile.trim();
     }
 
-    /** The settings used when there is no settings file. */
+    /**
+     * The settings used when there is no settings file.
+     */
     public static Settings defaults() {
         return new Settings(MIN_GAMES, MAX_GAMES, MIN_SHUFFLES, MAX_SHUFFLES,
                 WIN_RATE_CHECK_GAMES, MAX_ACTIONS, "");

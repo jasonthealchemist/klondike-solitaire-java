@@ -34,7 +34,9 @@ public class ApplicationContext {
         this.out = out;
     }
 
-    /** Builds the whole program and returns the object that runs it. */
+    /**
+     * Builds the whole program and returns the object that runs it.
+     */
     public GameSetup gameSetup() {
         ConsoleInput input = new ConsoleInput(new Scanner(in), out);
 
@@ -55,4 +57,3 @@ public class ApplicationContext {
         return new GameSetup(input, new ConfigPrompter(input, out, settings), gameRunner, out);
     }
 }
-

@@ -17,7 +17,9 @@ public class GameSetup {
         this.out = out;
     }
 
-    /** Runs the program until the user quits. Errors are not caught here: they reach the application. */
+    /**
+     * Runs the program until the user quits. Errors are not caught here: they reach the application.
+     */
     public void start() {
         out.println(TITLE + "\n");
 

@@ -9,7 +9,8 @@ import com.svi.klondike.game.Board;
  * only overrides what it needs.
  */
 public interface GameHandler {
-    GameHandler SILENT = new GameHandler() { };
+    GameHandler SILENT = new GameHandler() {
+    };
 
     default void onGameStart(int gameNumber, Board board) {
         // Nothing by default.

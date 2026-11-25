@@ -27,7 +27,9 @@ public class ConfigPrompter {
     }
 
 
-    /**Asks for shuffle, the draw mode and the number of games. */
+    /**
+     * Asks for shuffle, the draw mode and the number of games.
+     */
     public GameConfig ask() {
         ShuffleType shuffleType = input.chooseOne("Choose a shuffle:", Arrays.asList(ShuffleType.values()), ShuffleType::getLabel);
 

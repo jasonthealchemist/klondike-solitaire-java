@@ -24,7 +24,7 @@ public class BoardDisplay {
         this.out = out;
     }
 
-    public void print(Board board, int moveCount){
+    public void print(Board board, int moveCount) {
         System.out.println();
         printBoard(board, moveCount, null);
     }
@@ -34,7 +34,7 @@ public class BoardDisplay {
         printBoard(board, moveCount, lastAction);
     }
 
-    private void printBoard(Board board, int moveCount, GameAction lastAction){
+    private void printBoard(Board board, int moveCount, GameAction lastAction) {
         printStockAndTalon(board, moveCount, lastAction);
         printFoundations(board, lastAction);
         System.out.println();
@@ -69,10 +69,10 @@ public class BoardDisplay {
         return text.toString().trim();
     }
 
-    private void printFoundations(Board board, GameAction lastAction){
+    private void printFoundations(Board board, GameAction lastAction) {
         StringBuilder line = new StringBuilder("Foundations");
 
-        for(FoundationPile foundation : board.getFoundations()){
+        for (FoundationPile foundation : board.getFoundations()) {
             Card top = foundation.peekTop();
             String topText = (top == null) ? EMPTY_FOUNDATION : show(top, isHighlighted(lastAction, foundation, 0));
 
@@ -82,17 +82,17 @@ public class BoardDisplay {
         System.out.println(line);
     }
 
-    private void printTableau(Board board, GameAction lastAction){
+    private void printTableau(Board board, GameAction lastAction) {
         List<TableauPile> tableau = board.getTableau();
 
         StringBuilder header = new StringBuilder();
-        for(int index  = 0; index < tableau.size(); index++){
+        for (int index = 0; index < tableau.size(); index++) {
             header.append(pad(String.valueOf(index + 1)));
         }
         System.out.println(header);
 
         int tallest = 0;
-        for (TableauPile pile : tableau){
+        for (TableauPile pile : tableau) {
             tallest = Math.max(tallest, pile.size());
         }
 

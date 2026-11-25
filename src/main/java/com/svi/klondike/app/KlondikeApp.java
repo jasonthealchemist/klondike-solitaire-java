@@ -23,7 +23,9 @@ public class KlondikeApp {
         this.err = err;
     }
 
-    /** Runs the program and returns the exit code. Each kind of error is handled separately. */
+    /**
+     * Runs the program and returns the exit code. Each kind of error is handled separately.
+     */
     public int run() {
         try {
             new ApplicationContext(settingsSupplier.get(), in, out).gameSetup().start();

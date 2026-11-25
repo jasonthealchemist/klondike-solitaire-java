@@ -30,7 +30,9 @@ public class GameRunner {
         this.settings = settings;
     }
 
-    /** Plays and shows the games for the given choices. */
+    /**
+     * Plays and shows the games for the given choices.
+     */
     public void run(GameConfig config) {
         GameHandler display = new ConsoleGameHandler(config.gameCount(), out, boardDisplay, moveLogDisplay, resultDisplay);
 

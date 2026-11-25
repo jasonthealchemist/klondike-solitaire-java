@@ -34,12 +34,16 @@ public class MoveLogDisplay {
         this.boardDisplay = boardDisplay;
     }
 
-    /** Call before each game. */
+    /**
+     * Call before each game.
+     */
     public void start() {
         pendingDraws = 0;
     }
 
-    /** Shows one action. Draws are held back so that consecutive draws can be merged. */
+    /**
+     * Shows one action. Draws are held back so that consecutive draws can be merged.
+     */
     public void onAction(Board board, int actionNumber, GameAction action) {
         if (action.getType() == ActionType.DRAW) {
             if (pendingDraws == 0) {
@@ -59,7 +63,9 @@ public class MoveLogDisplay {
         boardDisplay.print(board, actionNumber, action);
     }
 
-    /** Shows any draws still waiting to be merged. Call once when the game is over. */
+    /**
+     * Shows any draws still waiting to be merged. Call once when the game is over.
+     */
     public void finish() {
         printPendingDraws();
     }
@@ -106,7 +112,9 @@ public class MoveLogDisplay {
         out.println(pad(numbers, NUMBER_WIDTH) + pad(label, LABEL_WIDTH) + pad(cards, CARDS_WIDTH) + route);
     }
 
-    /** The moved cards: the first card, and how many more came with it. */
+    /**
+     * The moved cards: the first card, and how many more came with it.
+     */
     private String cardsText(GameAction action) {
         int extra = action.getCardCount() - 1;
 

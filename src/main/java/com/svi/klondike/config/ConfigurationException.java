@@ -1,6 +1,8 @@
 package com.svi.klondike.config;
 
-/** Thrown when the settings file contains a value the program cannot use. */
+/**
+ * Thrown when the settings file contains a value the program cannot use.
+ */
 public class ConfigurationException extends RuntimeException {
     private static final long serialVersionUID = 1L;
 

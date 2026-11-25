@@ -11,7 +11,6 @@ public class ShufflerFactory {
         this.random = random;
     }
 
-
     public Shuffler create(ShuffleType type, int shuffleCount){
         switch(type){
             case FARO_OUT -> {

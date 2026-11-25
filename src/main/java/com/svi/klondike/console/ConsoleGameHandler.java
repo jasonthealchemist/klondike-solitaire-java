@@ -3,12 +3,13 @@ package com.svi.klondike.console;
 import com.svi.klondike.game.Board;
 import com.svi.klondike.engine.GameAction;
 import com.svi.klondike.engine.GameResult;
+import com.svi.klondike.service.GameHandler;
 import com.svi.klondike.service.SimulationResult;
 
 import java.io.PrintStream;
 
 /** Shows every game on the terminal: the starting board, each move with its board, and the final board. */
-public class ConsoleGameHandler {
+public class ConsoleGameHandler implements GameHandler {
     private static final int SINGLE_GAME = 1;
     private static final String BANNER_EDGE = "====================";
 

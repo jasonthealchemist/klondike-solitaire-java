@@ -8,7 +8,9 @@ import com.svi.klondike.io.DeckLoader;
 import com.svi.klondike.models.Deck;
 import com.svi.klondike.shuffle.ShufflerFactory;
 
-/** Creates games: builds a deck, shuffles it as chosen, and deals it onto a board. */
+/**
+ * Creates games: builds a deck, shuffles it as chosen, and deals it onto a board.
+ */
 public class GameService {
     private final ShufflerFactory shufflerFactory;
     private final DeckLoader deckLoader;
@@ -32,7 +34,9 @@ public class GameService {
         return deck;
     }
 
-    /** Deals the deck onto a new board. */
+    /**
+     * Deals the deck onto a new board.
+     */
     public Board deal(Deck deck, DrawMode drawMode) {
         Board board = new Board(drawMode.getCardCount());
         board.deal(deck);

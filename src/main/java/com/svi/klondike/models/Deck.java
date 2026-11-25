@@ -36,10 +36,12 @@ public class Deck {
         cards.addAll(orderedCards);
     }
 
+    /** Puts the cards in a new order using the given shuffler. */
     public void shuffleWith(Shuffler shuffler) {
         shuffler.shuffle(cards);
     }
 
+    /** Removes and returns the top card. */
     public Card dealTop() {
         return cards.remove(cards.size() - 1);
     }
@@ -52,6 +54,7 @@ public class Deck {
         return cards.size();
     }
 
+    /** A copy of the current card order, bottom card first. Changing the copy does not change the deck. */
     public List<Card> getOrder() {
         return new ArrayList<>(cards);
     }

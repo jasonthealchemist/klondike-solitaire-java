@@ -34,9 +34,7 @@ public class GameService {
         return deck;
     }
 
-    /**
-     * Deals the deck onto a new board.
-     */
+    /** Deals the deck onto a new board. */
     public Board deal(Deck deck, DrawMode drawMode) {
         Board board = new Board(drawMode.getCardCount());
         board.deal(deck);

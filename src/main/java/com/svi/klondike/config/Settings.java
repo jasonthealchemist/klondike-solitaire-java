@@ -31,7 +31,7 @@ public record Settings(int minGames, int maxGames, int minShuffles, int maxShuff
      */
     public static Settings defaults() {
         return new Settings(MIN_GAMES, MAX_GAMES, MIN_SHUFFLES, MAX_SHUFFLES,
-                WIN_RATE_CHECK_GAMES, MAX_ACTIONS, "");
+                WIN_RATE_CHECK_GAMES, MAX_ACTIONS, "input.txt");
     }
 
     public boolean hasDeckFile() {

@@ -24,7 +24,6 @@ public class ConfigPrompter {
         this.settings = settings;
     }
 
-
     /**
      * Asks for shuffle, the draw mode and the number of games.
      */
@@ -58,7 +57,9 @@ public class ConfigPrompter {
         return new GameConfig(shuffleType, shuffleCount, drawMode, gameCount);
     }
 
-    /** One game for single mode; otherwise asks how many games, never fewer than two. */
+    /**
+     * One game for single mode; otherwise asks how many games, never fewer than two.
+     */
     private int askGameCount(PlayMode playMode) {
         if (playMode == PlayMode.SINGLE_GAME) {
             return 1;

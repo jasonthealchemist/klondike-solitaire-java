@@ -1,25 +1,25 @@
 package com.svi.klondike.enums;
 
 public enum Suits {
-    DIAMOND('D', SuitColor.RED),
-    HEART('H', SuitColor.RED),
-    SPADE('S', SuitColor.BLACK),
-    CLUBS('C', SuitColor.BLACK);
+    DIAMOND('D', "RED"),
+    HEART('H', "RED"),
+    SPADE('S', "BLACK"),
+    CLUBS('C', "BLACK");
 
     private static final int SYMBOL_LENGTH = 1;
 
     private final char symbol;
-    private final SuitColor color;
+    private final String color;
 
 
-    Suits(char symbol, SuitColor color){
+    Suits(char symbol,String color){
         this.symbol = symbol;
         this.color = color;
     }
 
     public char getSymbol(){return symbol;}
 
-    public SuitColor getColor(){return color;}
+    public String getColor(){return color;}
 
     public static Suits fromSymbol(String text){
         if(text == null){

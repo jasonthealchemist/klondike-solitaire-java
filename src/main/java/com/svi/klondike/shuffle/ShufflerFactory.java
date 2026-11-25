@@ -11,17 +11,12 @@ public class ShufflerFactory {
         this.random = random;
     }
 
-    public Shuffler create(ShuffleType type, int shuffleCount){
-        switch(type){
-            case FARO_OUT -> {
-                return new OutFaroShuffler(shuffleCount);
-            }
-            case FARO_IN -> {
-                return new InFaroShuffler(shuffleCount);
-            }
-            default -> {
-                return new RandomShuffler(random);
-            }
-        }
+    public Shuffler create(ShuffleType type, int shuffleCount) {
+        return switch (type) {
+            case RANDOM -> new RandomShuffler(random);
+            case FARO_OUT -> new OutFaroShuffler(shuffleCount);
+            case FARO_IN -> new InFaroShuffler(shuffleCount);
+            case NONE -> new NoShuffler();
+        };
     }
 }

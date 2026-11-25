@@ -34,10 +34,13 @@ public class GameRunner {
      * Plays and shows the games for the given choices.
      */
     public void run(GameConfig config) {
-        GameHandler display = new ConsoleGameHandler(config.gameCount(), out, boardDisplay, moveLogDisplay, resultDisplay);
+        GameHandler display = new ConsoleGameHandler(
+                config.gameCount(), out, boardDisplay, moveLogDisplay, resultDisplay);
 
         SimulationResult result = simulationService.run(config, display);
 
-        resultDisplay.printSummary(config, result);
+        if (!config.isSingleGame()) {
+            resultDisplay.printSummary(config, result);
+        }
     }
 }

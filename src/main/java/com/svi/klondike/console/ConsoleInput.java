@@ -20,11 +20,14 @@ public class ConsoleInput {
         this.out = out;
     }
 
+    /** Shows the prompt and returns the trimmed line the user typed. */
     public String readLine(String prompt) {
-        out.println(prompt);
+        out.print(prompt);
+
         return scanner.nextLine().trim();
     }
 
+    /** Asks until the user types a whole number from min to max. */
     public int readInt(String prompt, int min, int max) {
         while (true) {
             String text = readLine(prompt);
@@ -43,6 +46,7 @@ public class ConsoleInput {
         }
     }
 
+    /** Asks until the user answers yes (Y, YES) or no (N, NO), in any letter case. */
     public boolean readYesNo(String prompt) {
         while (true) {
             String answer = readLine(prompt);
@@ -59,6 +63,7 @@ public class ConsoleInput {
         }
     }
 
+    /** Returns true when the user presses Enter, and false when the user chooses to quit and confirms it. */
     public boolean readEnterOrQuit(String prompt) {
         while (true) {
             String answer = readLine(prompt);
@@ -68,23 +73,21 @@ public class ConsoleInput {
             }
 
             if (answer.equalsIgnoreCase("Q") || answer.equalsIgnoreCase("QUIT")) {
-                if (readYesNo("Are you sure you want to quit the game? (Y/N): ")) {
+                if (readYesNo("Are you sure you want to quit? (Y/N): ")) {
                     return false;
                 }
             } else {
-                out.println("Invalid, please press Enter.");
+                out.println("Invalid, please press Enter or Q to quit.");
             }
         }
     }
 
-    /**
-     * Shows a numbered list and returns the option the user picked.
-     */
+    /** Shows a numbered list and returns the option the user picked. */
     public <T> T chooseOne(String title, List<T> options, Function<T, String> labelOf) {
         out.println("\n" + title);
 
         for (int index = 0; index < options.size(); index++) {
-            out.println(" " + (index + FIRST_OPTION) + ". " + labelOf.apply(options.get(index)));
+            out.println("  " + (index + FIRST_OPTION) + ". " + labelOf.apply(options.get(index)));
         }
 
         int choice = readInt(CHOICE_PROMPT, FIRST_OPTION, options.size());

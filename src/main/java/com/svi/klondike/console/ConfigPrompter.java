@@ -1,9 +1,6 @@
 package com.svi.klondike.console;
 
-import com.svi.klondike.config.DrawMode;
-import com.svi.klondike.config.GameConfig;
-import com.svi.klondike.config.Settings;
-import com.svi.klondike.config.ShuffleType;
+import com.svi.klondike.config.*;
 
 import java.io.PrintStream;
 import java.util.Arrays;
@@ -15,6 +12,7 @@ public class ConfigPrompter {
     private static final int MAX_GAMES = 100;
     private static final int SINGLE_GAME = 1;
     private static final int DEFAULT_SHUFFLE_COUNT = 1;
+    private static final int FEWEST_GAMES_FOR_SEVERAL = 1;
 
     private final ConsoleInput input;
     private final PrintStream out;
@@ -31,22 +29,45 @@ public class ConfigPrompter {
      * Asks for shuffle, the draw mode and the number of games.
      */
     public GameConfig ask() {
-        ShuffleType shuffleType = input.chooseOne("Choose a shuffle:", Arrays.asList(ShuffleType.values()), ShuffleType::getLabel);
+        ShuffleType shuffleType = input.chooseOne(
+                "Choose a shuffle:", Arrays.asList(ShuffleType.values()), ShuffleType::getLabel);
 
-        DrawMode drawMode = input.chooseOne("Choose how many cards to draw:", Arrays.asList(DrawMode.values()), DrawMode::getLabel);
+        PlayMode playMode = input.chooseOne(
+                "How do you want to play?", Arrays.asList(PlayMode.values()), PlayMode::getLabel);
 
-        int gameCount = input.readInt("\nHow many games should be played? (" + MIN_GAMES + "-" + MAX_GAMES + "): ", MIN_GAMES, MAX_GAMES);
+        DrawMode drawMode = input.chooseOne(
+                "Choose how many cards to draw:", Arrays.asList(DrawMode.values()), DrawMode::getLabel);
+
+        int gameCount = askGameCount(playMode);
 
         int shuffleCount = DEFAULT_SHUFFLE_COUNT;
+        boolean singleGame = gameCount == 1;
 
         if (shuffleType.isFaro()) {
-            if (gameCount == SINGLE_GAME) {
-                shuffleCount = input.readInt("Number of shuffles (" + MIN_SHUFFLES + "-" + MAX_SHUFFLES + "): ", MIN_SHUFFLES, MAX_SHUFFLES);
+            if (singleGame) {
+                shuffleCount = input.readInt(
+                        "Number of shuffles (" + settings.minShuffles() + "-" + settings.maxShuffles() + "): ",
+                        settings.minShuffles(), settings.maxShuffles());
             } else {
-                System.out.println("Faro shuffles are deterministic, so game n uses n shuffles " + "to give different deals.");
+                out.println("Faro shuffles are deterministic, so game n uses n shuffles to give different deals.");
             }
+        } else if (shuffleType == ShuffleType.NONE && !singleGame) {
+            out.println("Without a shuffle every game is the same game, so the results cover one deal.");
         }
 
         return new GameConfig(shuffleType, shuffleCount, drawMode, gameCount);
+    }
+
+    /** One game for single mode; otherwise asks how many games, never fewer than two. */
+    private int askGameCount(PlayMode playMode) {
+        if (playMode == PlayMode.SINGLE_GAME) {
+            return 1;
+        }
+
+        int fewest = Math.max(settings.minGames(), FEWEST_GAMES_FOR_SEVERAL);
+
+        return input.readInt(
+                "\nHow many games should be played? (" + fewest + "-" + settings.maxGames() + "): ",
+                fewest, settings.maxGames());
     }
 }

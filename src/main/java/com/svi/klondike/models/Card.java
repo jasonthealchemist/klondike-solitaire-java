@@ -49,10 +49,6 @@ public class Card implements Comparable<Card> {
         return suit.getColor() != other.suit.getColor();
     }
 
-    public boolean isSameSuitAs(Card other) {
-        return suit == other.suit;
-    }
-
     /** True if this card's rank is exactly one below the other card's rank. */
     public boolean isOneRankLowerThan(Card other) {
         return rank.getValue() == other.rank.getValue() - 1;
